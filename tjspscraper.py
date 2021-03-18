@@ -5,7 +5,10 @@ from scrapy.crawler import CrawlerProcess
 import os
 from pathlib import Path
 
-DLDIR = Path("./downloads")
+# `DLDIR_STRING` determina o diretorio onde serao salvos os downloads
+DLDIR_STRING = "./downloads"
+
+DLDIR        = Path(DLDIR_STRING)
 
 def is_weekday(r: arrow.Arrow) -> bool:
     return not is_weekend(r)
