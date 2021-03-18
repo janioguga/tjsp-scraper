@@ -36,17 +36,17 @@ class TJSPAranha(scrapy.spiders.Spider):
             mes = r.format('MM')
             ano = r.format('YYYY')
             for c in cadernos:
-                fname = ano + mes + dia + 'c' + str(c) + '.pdf'
+                fname = f"{ano}{mes}{dia}c{c}.pdf"
                 if file_exists(fname):
                     continue
-                uri = tjurl.format(dia, mes, ano, str(c))
+                uri = tjurl.format(dia, mes, ano, c)
                 yield scrapy.http.Request(uri, meta={'fname': fname})
 
     def parse(self, response):
         fhandle = open(DLDIR.joinpath(response.meta['fname']), 'wb')
         fhandle.write(response.body)
         fhandle.close()
-        self.logger.info('{} salvo com sucesso'.format(response.meta['fname']))
+        self.logger.info(f"{response.meta['fname']} salvo com sucesso")
 
 def main():
     try:
