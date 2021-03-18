@@ -20,7 +20,8 @@ def file_exists(fname):
     return os.path.isfile(DLDIR.joinpath(fname).as_posix())
 
 class TJSPAranha(scrapy.spiders.Spider):
-    name = 'TJSP'
+    name           = 'TJSP'
+    download_delay = 1.5
 
     def start_requests(self):
         tjurl  = "https://dje.tjsp.jus.br/cdje/downloadCaderno.do?dtDiario={0}/{1}/{2}&cdCaderno={3}"
